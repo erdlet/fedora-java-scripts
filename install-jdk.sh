@@ -21,9 +21,9 @@ fi
 java_version="${1}"
 
 if [[ -z $java_version ]]; then
-    dnf install "java-latest-openjdk" "java-latest-openjdk-javadoc" "java-latest-openjdk-src"
+    dnf install "java-latest-openjdk" "java-latest-openjdk-javadoc" "java-latest-openjdk-src" "java-latest-openjdk-devel"
 else
-    dnf install "java-${java_version}-openjdk" "java-${java_version}-openjdk-javadoc" "java-${java_version}-openjdk-src"
+    dnf install "java-${java_version}-openjdk" "java-${java_version}-openjdk-javadoc" "java-${java_version}-openjdk-src" "java-${java_version}-openjdk-devel"
 fi
 
 alternatives --remove-all java
