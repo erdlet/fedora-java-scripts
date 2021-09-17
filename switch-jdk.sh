@@ -19,6 +19,7 @@ if [ "$EUID" -ne 0 ]
 fi
 
 java_version=${1}
+default_file=/usr/lib/jvm/default
 
 echo "Searchig for install dir in /usr/lib/jvm for version $java_version"
 installed_dir=$(find /usr/lib/jvm/ -name "java-$java_version-*" -type d)
@@ -28,6 +29,8 @@ if [[ -z $installed_dir ]]; then
 	exit
 else
 	echo "Found install dir $installed_dir. Linking to /usr/lib/jvm/default"
-	rm /usr/lib/jvm/default
+	if [[ -f "$default_file" ]]; then
+            rm "$default_file"
+        fi
 	ln -s $installed_dir /usr/lib/jvm/default
 fi
